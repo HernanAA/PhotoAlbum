@@ -18,7 +18,7 @@ export const photoListFetch = () => {
         return dispatch(
             genericListFetch(
                 PHOTO_LIST_FETCH,
-                api.getPhotoListlUrl(),
+                api.getPhotosUrl(),
                 loadPhotoListSuccess,
                 loadPhotoListFail,
                 ' the photos.'
@@ -29,7 +29,7 @@ export const photoListFetch = () => {
 const loadPhotoListSuccess = (dispatch, jsonResponse) => {
     dispatch({
         type: PHOTO_LIST_FETCH_SUCCESS,
-        payload:  {list: jsonResponse.photos }
+        payload:  jsonResponse
     });
 };
 
