@@ -20,4 +20,3 @@ export default configureStore = (onComplete) => {
 
   return store;
 };
-

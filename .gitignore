@@ -54,6 +54,11 @@ buck-out/
 
 __tests__/
 package-lock.json
+.babelrc
+.buckconfig
+.flowconfig
+.gitattributes
+.watchmanconfig
 android/build.gradle
 android/gradle.properties
 android/gradlew
@@ -68,3 +73,6 @@ android/keystores/BUCK
 android/keystores/debug.keystore.properties
 ios/Pods/
 node_modules/react-native-maps/package.json
+
+ios/
+

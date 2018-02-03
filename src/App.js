@@ -3,7 +3,9 @@ import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
 import { AsyncStorage, StatusBar, View, Platform, NetInfo, Text } from 'react-native';
+import Router from './Router';
 import configureStore from './Store';
+import { Spinner } from './components/common';
 
 //a dirty way to clear persisted old state
 //Todo: if you've ran the old TodoRN version, uncomment this before get started.
@@ -20,24 +22,20 @@ class App extends Component {
 
         this.state = {
             isLoading: true,
-            store: configureStore(() => this.setState({ isLoading: false })),
-            isReady: false
+            store: configureStore(() => this.setState({ isLoading: false }))
         };
     }
 
-    async componentWillMount() {
-        this.setState({ isReady: true });
-    }
-
     render() {
-        if (!this.state.isReady || this.state.isLoading) {
-            return <Text> TODO: Spinner </Text>;
+        if (this.state.isLoading) {
+            return <Spinner size="small" />;
         }
 
         return (
             <Provider store={this.state.store}>
                 <View style={Style}>
                     <StatusBar backgroundColor={'black'} />
+                    <Router />
                 </View>
             </Provider>
         );
@@ -45,4 +43,3 @@ class App extends Component {
 }
 
 export default App;
-
