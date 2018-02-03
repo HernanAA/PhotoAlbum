@@ -1,4 +1,4 @@
-//import { REHYDRATE } from 'redux-persist/constants'
+import { REHYDRATE } from 'redux-persist/constants'
 
 import {
   ALBUMS_FETCH,
@@ -20,13 +20,13 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    // case REHYDRATE:
-    //   var incoming = action.payload.albums
-    //   console.log('REHYDRATE', incoming)
-    //   if (incoming) {
-    //     return { ...state, ...incoming, rehydrated: true }
-    //   }
-    //   return { ...state, rehydrated: true }
+    case REHYDRATE:
+      var incoming = action.payload.albums
+      console.log('REHYDRATE', incoming)
+      if (incoming) {
+        return { ...state, ...incoming, rehydrated: true }
+      }
+      return { ...state, rehydrated: true }
     case ALBUMS_FETCH:
       return { ...state, fetching: true };
     case ALBUMS_FETCH_SUCCESS:

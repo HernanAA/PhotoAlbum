@@ -6,14 +6,9 @@ import AlbumView from './AlbumView'
 
 class AlbumList extends Component {
 
-    // componentWillMount() {
-    //     if (this.props.rehydrated || this.props.filteredList.length > 0)
-    //         this.props.albumsFetch();
-    // }
-
-    componentWillReceiveProps(next) {
-        if (next.rehydrated || next.filteredList.length > 0){
-            console.log('fetch')
+    componentWillMount() {
+        if (this.props.rehydrated && this.props.filteredList.length == 0){
+            alert('IMPORTANTE: render fetch')
             this.props.albumsFetch();
         }
     }
@@ -25,7 +20,6 @@ class AlbumList extends Component {
             </View>
         );
     }
-
 }
 
 const styles = {
