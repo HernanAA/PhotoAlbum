@@ -6,7 +6,7 @@ import {
   ALBUMS_FETCH_FAIL,
   ALBUMS_FILTER_CHANGED,
   ALBUM_SELECT,
-  ALBUM_SEARCHING
+  ALBUM_FILTERING
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -17,7 +17,7 @@ const INITIAL_STATE = {
   selectedAlbum: {},
   filterText: '',
   rehydrated: false,
-  searching: false,
+  filtering: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -39,8 +39,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, ...action.payload };
     case ALBUMS_FILTER_CHANGED:
       return { ...state, ...action.payload, fetching: false };
-    case ALBUM_SEARCHING:
-      return {...state, searching: !state.searching}
+    case ALBUM_FILTERING:
+      return {...state, filtering: !state.filtering}
     default:
       return state;
   }

@@ -7,7 +7,7 @@ import {
     ALBUMS_FETCH_FAIL,
     ALBUMS_FILTER_CHANGED,
     ALBUM_SELECT,
-    ALBUM_SEARCHING
+    ALBUM_FILTERING
 } from './types';
 
 export const albumsFetch = () => {
@@ -37,9 +37,9 @@ const loadAlbumsFail = (dispatch, error) => {
     });
 };
 
-export const albumSearchChanged = () => {
+export const albumFilterPressed = () => {
     return ({
-        type: ALBUM_SEARCHING
+        type: ALBUM_FILTERING
     })
 }
 
@@ -54,7 +54,7 @@ export const albumFilterChanged = ({ text }) => {
         })
 
         dispatch({
-            type: ALBUM_CHANGED,
+            type: ALBUMS_FILTER_CHANGED,
             payload: { albumFilterText: text, albumFilteredList: newData }
         });
     }

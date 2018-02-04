@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View, NetInfo } from 'react-native'
 import { connect } from 'react-redux';
-import { albumsFetch, albumFilterChanged, albumSelect, albumSearchChanged } from '../../actions/AlbumActions';
+import { albumsFetch, albumFilterChanged, albumSelect, albumFilterPressed } from '../../actions/AlbumActions';
 import { photoListFetch } from '../../actions/PhotoActions';
 import AlbumView from './AlbumView'
 
@@ -31,16 +31,16 @@ const styles = {
 };
 
 const mapStateToProps = ({ albums, photo }) => {
-    const { filteredList, fetching, rehydrated, error, searching } = albums;
+    const { filteredList, fetching, rehydrated, error, filtering } = albums;
     const photosList = photo.list;
-    return { filteredList, fetching, rehydrated, error, searching, photosList }
+    return { filteredList, fetching, rehydrated, error, filtering, photosList }
 };
 
 export default connect(mapStateToProps, {
     albumsFetch,
     albumFilterChanged,
     albumSelect,
-    albumSearchChanged,
+    albumFilterPressed,
     photoListFetch
 })(AlbumList);
 

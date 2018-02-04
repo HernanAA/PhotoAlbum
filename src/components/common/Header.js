@@ -5,19 +5,21 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
 
 const Header = (props) => {
-  alert(props.searching);
+  //alert(props.filtering);
   return (
     <View style={styles.container}>
-      <View style={styles.leftContainer}>
-        <TouchableOpacity
-          style={styles.navBarLeftButton}
-          activeOpacity={0.2}
-          onPress={() => { Actions.pop() }}>
-          <Icon name='arrow-back' size={20} color={Styles.colors.white} />
-        </TouchableOpacity>
-        <Text style={styles.headerText}>{props.headerText}</Text>
-      </View>
-      <View style={styles.filterContainer}>
+      {!props.filtering ?
+        <View style={styles.leftContainer}>
+          <TouchableOpacity
+            style={styles.navBarLeftButton}
+            activeOpacity={0.2}
+            onPress={() => { Actions.pop() }}>
+            <Icon name='arrow-back' size={20} color={Styles.colors.white} />
+          </TouchableOpacity>
+          <Text style={styles.headerText}>{props.headerText}</Text>
+        </View>
+        : null}
+      <View style={styles.filterContainer(props.filtering)}>
         <TextInput style={styles.inputText}
           onChangeText={props.onFilterChanged}
           underlineColorAndroid={'transparent'}>
@@ -25,7 +27,7 @@ const Header = (props) => {
         <TouchableOpacity
           style={styles.searchIconContainer}
           activeOpacity={0.1}
-          onPress={() => { props.onSearchChanged() }}>
+          onPress={() => { props.onFilterPressed() }}>
           <Icon name='search' size={25} color={Styles.colors.white} />
         </TouchableOpacity>
       </View>
@@ -39,7 +41,6 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 45,
-    paddingLeft: 20,
     flexDirection: 'row',
     elevation: 1
   },
@@ -47,6 +48,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    paddingLeft: 20,
     flex: 1,
   },
   navBarLeftButton: {
@@ -58,22 +60,33 @@ const styles = {
     textShadowOffset: { width: 0, height: 1 },
     color: Styles.colors.white,
   },
-  filterContainer: {
-    flex: 1.3,
-    backgroundColor: 'rgba(47,163,218,.1)',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    height: 45,
-    paddingLeft: 20,
-    flexDirection: 'row',
-    borderRadius: 4
+  filterContainer: (filtering) => {
+    var style = {
+      flex: 1.3,
+      backgroundColor: 'rgba(47,163,218,.1)',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      height: 45,
+      //paddingLeft: 20,
+      flexDirection: 'row',
+      borderRadius: 4,
+    }
+    if (filtering){
+      style.backgroundColor = 'rgba(47,163,218,.4)'
+      
+    }
+    return style;
   },
   inputText: {
     flex: 1,
     fontSize: 19,
-    color: 'gray',
-    //backgroundColor: 'rgba(47,163,218,.9)',
-    borderRadius: 10
+    paddingBottom: 2,
+    paddingLeft:20,
+    //color: Styles.colors.white,
+    borderRadius: 10,
+    backgroundColor: 'white',
+    height:32,
+    marginLeft:20,
   },
   searchIconContainer: {
     marginRight: 15,

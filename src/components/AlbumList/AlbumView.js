@@ -30,15 +30,15 @@ class AlbumView extends Component {
     onFilterChanged(text) {
         this.props.albumFilterChanged({ text });
     }
-    onSearchChanged(){
-        this.props.albumSearchChanged();
+    onFilterPressed(){
+        this.props.albumFilterPressed();
     }
 
     render() {
         const title = <Header headerText={"Albums"} 
             onFilterChanged={this.onFilterChanged.bind(this)}
-            onSearchChanged={this.onSearchChanged.bind(this)}
-            searching={this.props.searching}/>;
+            onFilterPressed={this.onFilterPressed.bind(this)}
+            filtering={this.props.filtering}/>;
 
         if (this.props.fetching) {
             return (
