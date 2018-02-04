@@ -14,9 +14,14 @@ class AlbumView extends Component {
     }
 
     renderItem({ item }) {
+        const imageIndex = this.props.photosList.findIndex(
+            (element, index, array) => element.albumId == item.id);
+
+        const image = imageIndex >= 0 ? this.props.photosList[imageIndex].url : null;
+
         return (
             <TouchableOpacity onPress={this.onAlbumPress.bind(this, item)}>
-                <AlbumViewItem item={item} />
+                <AlbumViewItem item={item} image={image} />
             </TouchableOpacity>
         )
     }
@@ -55,14 +60,15 @@ class AlbumView extends Component {
                     <AlbumFilter onFilterChanged={this.onFilterChanged.bind(this)} />
                     <View style={styles.listContainer}>
                         <FlatList
-                            style={{ flex: 1 }}
+                            style={{ flex: 1, flexDirection: 'column' }}
+                            numColumns={2}
                             data={this.props.filteredList}
                             keyExtractor={(item, index) => item.id}
                             renderItem={this.renderItem.bind(this)}
                         />
                     </View>
                     <Text style={styles.quantityText}>
-                        {this.props.filteredList ? this.props.filteredList.length + " images." : ''}
+                        {this.props.filteredList ? this.props.filteredList.length + " images." : 'No images'}
                     </Text>
                 </View>
             </View>

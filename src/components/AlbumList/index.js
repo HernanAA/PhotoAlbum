@@ -30,8 +30,10 @@ const styles = {
     },
 };
 
-const mapStateToProps = ({ albums }) => {
-    return { filteredList, fetching, rehydrated } = albums;
+const mapStateToProps = ({ albums, photo }) => {
+    const { filteredList, fetching, rehydrated, error } = albums;
+    const photosList = photo.list;
+    return { filteredList, fetching, rehydrated, error, photosList }
 };
 
 export default connect(mapStateToProps, {
