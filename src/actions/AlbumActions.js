@@ -6,7 +6,8 @@ import {
     ALBUMS_FETCH_SUCCESS,
     ALBUMS_FETCH_FAIL,
     ALBUMS_FILTER_CHANGED,
-    ALBUM_SELECT
+    ALBUM_SELECT,
+    ALBUM_SEARCHING
 } from './types';
 
 export const albumsFetch = () => {
@@ -25,7 +26,7 @@ export const albumsFetch = () => {
 const loadAlbumsSuccess = (dispatch, jsonResponse) => {
     dispatch({
         type: ALBUMS_FETCH_SUCCESS,
-        payload: jsonResponse 
+        payload: jsonResponse
     });
 };
 
@@ -36,6 +37,11 @@ const loadAlbumsFail = (dispatch, error) => {
     });
 };
 
+export const albumSearchChanged = () => {
+    return ({
+        type: ALBUM_SEARCHING
+    })
+}
 
 export const albumFilterChanged = ({ text }) => {
     return (dispatch, getState) => {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
 import reducers from './reducers';
-import { AsyncStorage, StatusBar, View, Platform, NetInfo, Text } from 'react-native';
+import { AsyncStorage, StatusBar, View, Platform, ImageBackground } from 'react-native';
 import Router from './Router';
 import configureStore from './Store';
 import { Spinner } from './components/common';
@@ -13,7 +13,9 @@ import { Spinner } from './components/common';
 
 const Style = {
     flex: 1,
-    marginTop: Platform.OS === 'ios' ? 20 : 0
+    marginTop: Platform.OS === 'ios' ? 20 : 0,
+    width: '100%',
+    height: '100%'
 }
 
 class App extends Component {
@@ -28,15 +30,19 @@ class App extends Component {
 
     render() {
         if (this.state.isLoading) {
-            return <Spinner size="small" />;
+            return (
+                <ImageBackground source={require('./images/background.jpeg')} style={Style}>
+                    <Spinner size="small" />
+                </ImageBackground>
+            )
         }
 
         return (
             <Provider store={this.state.store}>
-                <View style={Style}>
-                    <StatusBar backgroundColor={'black'} />
+                <ImageBackground source={require('./images/background.jpeg')} style={Style}>
+                    <StatusBar hidden />
                     <Router />
-                </View>
+                </ImageBackground>
             </Provider>
         );
     }

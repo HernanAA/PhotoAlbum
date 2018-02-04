@@ -27,8 +27,6 @@ const styles = {
         marginBottom: 10,
         flexDirection: 'column',
         backgroundColor: Styles.colors.white,
-        borderRadius: 3,
-        elevation: 2,
         paddingHorizontal: 20,
     },
     imageContainer: {
