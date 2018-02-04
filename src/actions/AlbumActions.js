@@ -38,9 +38,20 @@ const loadAlbumsFail = (dispatch, error) => {
 };
 
 export const albumFilterPressed = () => {
-    return ({
-        type: ALBUM_FILTERING
-    })
+    return (dispatch, getState) => {
+        if (getState().filtering) {
+            dispatch({
+                type: ALBUM_FILTERING,
+                payload: { albumFilterText: '', albumFilteredList: getState().list }
+            })
+        }
+        else{
+            dispatch({
+                type: ALBUM_FILTERING,
+                payload: {}
+            })
+        }
+    }
 }
 
 export const albumFilterChanged = ({ text }) => {

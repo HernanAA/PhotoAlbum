@@ -14,7 +14,6 @@ class AlbumView extends Component {
     }
 
     renderItem({ item }) {
-        return null;
         const imageIndex = this.props.photosList.findIndex(
             (element, index, array) => element.albumId == item.id);
 
@@ -38,11 +37,13 @@ class AlbumView extends Component {
         const title = <Header headerText={"Albums"} 
             onFilterChanged={this.onFilterChanged.bind(this)}
             onFilterPressed={this.onFilterPressed.bind(this)}
-            filtering={this.props.filtering}/>;
+            filtering={this.props.filtering}
+            backButton={false}
+            albumFilterText={this.props.albumFilterText}/>;
 
         if (this.props.fetching) {
             return (
-                <ImageBackground source={require('./../../images/background.jpeg')} style={styles.screen}>
+                <ImageBackground source={require('./../../images/background.jpg')} style={styles.screen}>
                     {title}
                     <Spinner size="small" />
                 </ImageBackground>
@@ -51,7 +52,7 @@ class AlbumView extends Component {
 
         if (this.props.error !== '') {
             return (
-                <ImageBackground source={require('./../../images/background.jpeg')} style={styles.screen}>
+                <ImageBackground source={require('./../../images/background.jpg')} style={styles.screen}>
                     {title}
                     <View style={styles.errorContainer}>
                         <Text> {this.props.error} </Text>
@@ -61,10 +62,9 @@ class AlbumView extends Component {
         }
 
         return (
-            <ImageBackground source={require('./../../images/background.jpeg')} style={styles.screen}>
+            <ImageBackground source={require('./../../images/background.jpg')} style={styles.screen}>
                 {title}
                 <View style={styles.container}>
-                    {/* <AlbumFilter onFilterChanged={this.onFilterChanged.bind(this)} /> */}
                     <View style={styles.listContainer}>
                         <FlatList
                             style={{ flex: 1, flexDirection: 'column' }}
@@ -89,7 +89,7 @@ const styles = {
     container: {
         flex: 1,
         paddingHorizontal: 10,
-        backgroundColor: 'rgba(47,163,218,.2)'
+        //backgroundColor: 'rgba(47,163,218,.2)'
     },
     listContainer: {
         flex: 1,

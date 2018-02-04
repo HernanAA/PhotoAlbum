@@ -4,9 +4,9 @@ import {
   ALBUMS_FETCH,
   ALBUMS_FETCH_SUCCESS,
   ALBUMS_FETCH_FAIL,
-  ALBUMS_FILTER_CHANGED,
+  // ALBUMS_FILTER_CHANGED,
   ALBUM_SELECT,
-  ALBUM_FILTERING
+  // ALBUM_FILTERING
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -15,9 +15,7 @@ const INITIAL_STATE = {
   error: '',
   fetching: false,
   selectedAlbum: {},
-  filterText: '',
   rehydrated: false,
-  filtering: false,
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -37,10 +35,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, ...action.payload, fetching: false };
     case ALBUM_SELECT:
       return { ...state, ...action.payload };
-    case ALBUMS_FILTER_CHANGED:
-      return { ...state, ...action.payload, fetching: false };
-    case ALBUM_FILTERING:
-      return {...state, filtering: !state.filtering}
+    // case ALBUMS_FILTER_CHANGED:
+    //   return { ...state, ...action.payload, fetching: false };
+    // case ALBUM_FILTERING:
+    //   return {...state, filtering: !state.filtering}
     default:
       return state;
   }

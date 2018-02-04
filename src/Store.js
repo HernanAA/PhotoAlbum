@@ -16,7 +16,10 @@ export default configureStore = (onComplete) => {
   const store = autoRehydrate()(createStoreWithMiddleware)(reducers);
   persistStore(store, { 
       storage: AsyncStorage, 
-    }, onComplete);
+      blacklist: [
+        'notPersisted'
+      ] 
+      }, onComplete);
 
   return store;
 };

@@ -10,19 +10,25 @@ const Header = (props) => {
     <View style={styles.container}>
       {!props.filtering ?
         <View style={styles.leftContainer}>
-          <TouchableOpacity
-            style={styles.navBarLeftButton}
-            activeOpacity={0.2}
-            onPress={() => { Actions.pop() }}>
-            <Icon name='arrow-back' size={20} color={Styles.colors.white} />
-          </TouchableOpacity>
+          {props.backButton ?
+            <TouchableOpacity
+              style={styles.navBarLeftButton}
+              activeOpacity={0.2}
+              onPress={() => { Actions.pop() }}>
+              <Icon name='arrow-back' size={20} color={Styles.colors.white} />
+            </TouchableOpacity> :
+            null
+          }
           <Text style={styles.headerText}>{props.headerText}</Text>
         </View>
-        : null}
+        : null
+      }
       <View style={styles.filterContainer(props.filtering)}>
-        <TextInput style={styles.inputText}
+        <TextInput style={styles.inputText(props.filtering)}
           onChangeText={props.onFilterChanged}
-          underlineColorAndroid={'transparent'}>
+          underlineColorAndroid={'transparent'}
+          textAlign={'center'}
+          value={props.albumFilterText}>
         </TextInput>
         <TouchableOpacity
           style={styles.searchIconContainer}
@@ -71,22 +77,26 @@ const styles = {
       flexDirection: 'row',
       borderRadius: 4,
     }
-    if (filtering){
+    if (filtering) {
       style.backgroundColor = 'rgba(47,163,218,.4)'
-      
     }
     return style;
   },
-  inputText: {
-    flex: 1,
-    fontSize: 19,
-    paddingBottom: 2,
-    paddingLeft:20,
-    //color: Styles.colors.white,
-    borderRadius: 10,
-    backgroundColor: 'white',
-    height:32,
-    marginLeft:20,
+  inputText: (filtering) => {
+    var style = {
+      flex: 1,
+      fontSize: 19,
+      paddingBottom: 3,
+      paddingLeft: 20,
+      //color: Styles.colors.white,
+      borderRadius: 10,
+      height: 33,
+      marginLeft: 20,
+    }
+    if (filtering) {
+      style.backgroundColor = 'white'
+    }
+    return style;
   },
   searchIconContainer: {
     marginRight: 15,

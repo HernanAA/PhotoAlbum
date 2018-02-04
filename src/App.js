@@ -31,7 +31,7 @@ class App extends Component {
     render() {
         if (this.state.isLoading) {
             return (
-                <ImageBackground source={require('./images/background.jpeg')} style={Style}>
+                <ImageBackground source={require('./images/background.jpg')} style={Style}>
                     <Spinner size="small" />
                 </ImageBackground>
             )
@@ -39,7 +39,7 @@ class App extends Component {
 
         return (
             <Provider store={this.state.store}>
-                <ImageBackground source={require('./images/background.jpeg')} style={Style}>
+                <ImageBackground source={require('./images/background.jpg')} style={Style}>
                     <StatusBar hidden />
                     <Router />
                 </ImageBackground>
