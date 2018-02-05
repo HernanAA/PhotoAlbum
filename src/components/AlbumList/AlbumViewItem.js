@@ -1,8 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Styles from '../../styles'
 import { View, Image, Text } from 'react-native'
 import Utils from '../../helpers/utils';
-import { Stars } from '../common';
 
 const AlbumViewItem = ({ item, image }) => {
     return (
@@ -57,11 +56,7 @@ const styles = {
         fontSize: 12,
         color: Styles.colors.black,
         fontWeight: '500',
-    },
-    stars: {
-        flexDirection: 'row',
-        alignItems: 'flex-start'
-    },
+    }
 }
 
 export { AlbumViewItem }

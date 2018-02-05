@@ -10,7 +10,6 @@ import {
   PHOTO_FETCH_FAIL,
   PHOTO_SELECT,
   ALBUM_PHOTOS_CHANGED
-
 } from '../actions/types';
 
 const INITIAL_STATE = {

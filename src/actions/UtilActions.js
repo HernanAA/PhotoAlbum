@@ -10,12 +10,10 @@ export const genericListFetch = (actionType, url, onSuccess, onFail, description
             }
         })
         .then((response) => {
-            //alert(JSON.stringify(response, null,4))
             return response.json()
         })
         .then((rjson) => {
             if (rjson !== null) {
-                //alert(JSON.stringify(rjson, null,4))
                 onSuccess(dispatch, rjson)
             }
             else {

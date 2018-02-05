@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-import { View, TouchableWithoutFeedback, FlatList, Text, ImageBackground, Animated } from 'react-native'
-import { Actions } from 'react-native-router-flux';
-import Styles from '../../styles'
+import { View, TouchableWithoutFeedback, FlatList, ImageBackground, Animated } from 'react-native'
 import  PhotoListViewItem  from './PhotoListViewItem'
-import { Spinner, Header } from '../common';
+import { Header } from '../common';
 
 class PhotoListView extends Component {
-
     constructor(props) {
         super(props)
         this.state = ({ 
@@ -19,13 +16,14 @@ class PhotoListView extends Component {
             duration: 200
         }).start()
     }
+
     onPhotoPressOut() {
         Animated.timing(this.state.animatePress, {
             toValue: 1,
             duration: 200
         }).start()
     }
-
+    
     renderItem({ item, index }) {
         return (
             <TouchableWithoutFeedback
@@ -44,14 +42,12 @@ class PhotoListView extends Component {
             </TouchableWithoutFeedback>
         )
     }
-
     onFilterChanged(text) {
         this.props.albumFilterChanged({ text });
     }
     onFilterPressed() {
         this.props.albumFilterPressed();
     }
-
     render() {
         const title = <Header
             headerText={this.props.selectedAlbum.title.substring(0, 16) + '...'}

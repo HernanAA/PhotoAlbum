@@ -14,7 +14,7 @@ const Header = (props) => {
               style={styles.navBarLeftButton}
               activeOpacity={0.2}
               onPress={() => { Actions.pop() }}>
-              <Icon name='arrow-back' size={20} color={Styles.colors.white} />
+              <Icon name='arrow-back' size={25} color={Styles.colors.darkerGray} />
             </TouchableOpacity> :
             null
           }
@@ -23,7 +23,7 @@ const Header = (props) => {
         : null
       }
       {props.searchButton ? 
-      <View style={styles.filterContainer(props.filtering)}>
+      <View style={styles.filterContainer}>
         <TextInput style={styles.inputText(props.filtering)}
           onChangeText={props.onFilterChanged}
           underlineColorAndroid={'transparent'}
@@ -35,7 +35,7 @@ const Header = (props) => {
           style={styles.searchIconContainer}
           activeOpacity={0.1}
           onPress={() => { props.onFilterPressed() }}>
-          <Icon name='search' size={25} color={Styles.colors.white} />
+          <Icon name='search' size={25} color={Styles.colors.darkerGray} />
         </TouchableOpacity>
       </View>
       : null}
@@ -61,23 +61,21 @@ const styles = {
   },
   navBarLeftButton: {
     marginRight: 20,
+    paddingTop:5,
   },
   headerText: {
     fontSize: 27,
     fontWeight: '400',
     textShadowOffset: { width: 0, height: 1 },
-    color: Styles.colors.white,
+    color: Styles.colors.darkerGray,
   },
-  filterContainer: (filtering) => {
-    var style = {
+  filterContainer:{
       flex: 1.3,
       justifyContent: 'space-between',
       alignItems: 'center',
       height: 45,
       flexDirection: 'row',
       borderRadius: 4,
-    }
-    return style;
   },
   inputText: (filtering) => {
     var style = {

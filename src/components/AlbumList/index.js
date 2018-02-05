@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, NetInfo } from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux';
 import { albumsFetch, albumFilterChanged, albumSelect, albumFilterPressed } from '../../actions/AlbumActions';
 import { photoListFetch } from '../../actions/PhotoActions';

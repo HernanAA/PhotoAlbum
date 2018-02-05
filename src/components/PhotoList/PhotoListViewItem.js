@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import Styles from '../../styles'
-import { View, Image, Text, Animated } from 'react-native'
+import { View, Image, Animated } from 'react-native'
 import Utils from '../../helpers/utils';
-import { Stars } from '../common';
 
 class PhotoListViewItem extends Component {
     constructor(props) {
@@ -67,28 +66,7 @@ const styles = {
     image: {
         flex: 1,
         resizeMode: 'cover',
-    },
-    bottomContainer: {
-        flexDirection: 'column',
-        justifyContent: 'center',
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        height: 54,
-    },
-    line: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        paddingTop: 3,
-    },
-    title: {
-        fontSize: 12,
-        color: Styles.colors.black,
-        fontWeight: '500',
-    },
-    stars: {
-        flexDirection: 'row',
-        alignItems: 'flex-start'
-    },
+    }
 }
 
 export default PhotoListViewItem;

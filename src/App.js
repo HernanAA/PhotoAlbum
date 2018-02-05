@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { compose, createStore, applyMiddleware } from 'redux';
-import reducers from './reducers';
-import { AsyncStorage, StatusBar, View, Platform, ImageBackground } from 'react-native';
+import { AsyncStorage, StatusBar, Platform, ImageBackground } from 'react-native';
 import Router from './Router';
 import configureStore from './Store';
 import { Spinner } from './components/common';

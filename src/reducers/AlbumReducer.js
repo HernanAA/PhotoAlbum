@@ -6,7 +6,6 @@ import {
   ALBUMS_FETCH_FAIL,
   ALBUMS_FILTER_CHANGED,
   ALBUM_SELECT,
-  // ALBUM_FILTERING
 } from '../actions/types';
 
 const INITIAL_STATE = {

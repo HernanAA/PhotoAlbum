@@ -6,7 +6,6 @@ import {
 } from 'react-native-router-flux';
 import Albums from './components/AlbumList';
 import PhotoList from './components/PhotoList';
-//import Photo from './components/Photo';
 
 const RouterComponent = () => {
     return (
