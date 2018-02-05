@@ -59,18 +59,6 @@ package-lock.json
 .flowconfig
 .gitattributes
 .watchmanconfig
-android/build.gradle
-android/gradle.properties
-android/gradlew
-android/gradlew.bat
-android/settings.gradle
-android/app/BUCK
-android/app/proguard-rules.pro
-android/app/src/
-android/gradle/wrapper/gradle-wrapper.jar
-android/gradle/wrapper/gradle-wrapper.properties
-android/keystores/BUCK
-android/keystores/debug.keystore.properties
 ios/Pods/
 node_modules/react-native-maps/package.json
 
