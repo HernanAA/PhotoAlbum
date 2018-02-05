@@ -9,7 +9,6 @@ class AlbumList extends Component {
 
     componentWillMount() {
         if (this.props.rehydrated && this.props.filteredList.length == 0) {
-            alert('IMPORTANTE: render fetch')
             this.props.albumsFetch();
             this.props.photoListFetch();
         }
@@ -26,7 +25,7 @@ class AlbumList extends Component {
 
 const styles = {
     screen: {
-        flex: 1
+        flex: 1,
     },
 };
 

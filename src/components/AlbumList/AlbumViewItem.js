@@ -13,7 +13,7 @@ const AlbumViewItem = ({ item, image }) => {
 
             <View style={styles.bottomContainer}>
                 <View style={styles.line}>
-                    <Text style={styles.title}>{item.title.substring(0,17)}...</Text>
+                    <Text style={styles.title}>{item.title.substring(0,70)}...</Text>
                 </View>
             </View>
         </View >
@@ -23,18 +23,19 @@ const AlbumViewItem = ({ item, image }) => {
 const styles = {
     container: {
         height: 240,
-        width: Utils.getWindowDimensions().width / 2 - 10,
-        marginBottom: 10,
+        width: Utils.getWindowDimensions().width / 2 - 40,
+        marginVertical: 10,
         flexDirection: 'column',
-        backgroundColor: Styles.colors.white,
-        paddingHorizontal: 20,
+        backgroundColor: 'rgba(50,150,255,.4)',
+        marginHorizontal: 20,
+        borderBottomLeftRadius:5,
+        borderBottomRightRadius:5,
     },
     imageContainer: {
         flex: 1,
         borderTopLeftRadius: 5,
         borderTopRightRadius: 5,
         borderColor: Styles.colors.lighterGray,
-        borderWidth: 1,
         overflow: 'hidden',
     },
     image: {
@@ -46,7 +47,7 @@ const styles = {
         justifyContent: 'center',
         paddingHorizontal: 10,
         paddingVertical: 5,
-        height:40,
+        height:54,
     },
     line: {
         flexDirection: 'row',
@@ -54,7 +55,7 @@ const styles = {
         paddingTop: 3,
     },
     title: {
-        fontSize: 16,
+        fontSize: 12,
         color: Styles.colors.black,
         fontWeight: '500',
     },

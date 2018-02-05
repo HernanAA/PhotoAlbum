@@ -9,7 +9,7 @@ import { Spinner } from './components/common';
 
 //a dirty way to clear persisted old state
 //Todo: if you've ran the old TodoRN version, uncomment this before get started.
-//(async () => await AsyncStorage.clear())();
+(async () => await AsyncStorage.clear())();
 
 const Style = {
     flex: 1,

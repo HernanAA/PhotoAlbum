@@ -39,24 +39,19 @@ const loadAlbumsFail = (dispatch, error) => {
 
 export const albumFilterPressed = () => {
     return (dispatch, getState) => {
-        if (getState().filtering) {
+        if (getState().notPersisted.filtering) {
             dispatch({
-                type: ALBUM_FILTERING,
-                payload: { albumFilterText: '', albumFilteredList: getState().list }
+                type: ALBUMS_FILTER_CHANGED,
+                payload: { albumFilterText: '', filteredList: getState().albums.list }
             })
         }
-        else{
-            dispatch({
-                type: ALBUM_FILTERING,
-                payload: {}
-            })
-        }
+        dispatch({type: ALBUM_FILTERING})
     }
 }
 
 export const albumFilterChanged = ({ text }) => {
     return (dispatch, getState) => {
-        //dispatch({ type: ALBUMS_FETCH });
+        dispatch({ type: ALBUMS_FETCH });
 
         const newData = getState().albums.list.filter((item) => {
             const itemData = item.title.toUpperCase()
@@ -66,7 +61,7 @@ export const albumFilterChanged = ({ text }) => {
 
         dispatch({
             type: ALBUMS_FILTER_CHANGED,
-            payload: { albumFilterText: text, albumFilteredList: newData }
+            payload: { albumFilterText: text, filteredList: newData }
         });
     }
 }

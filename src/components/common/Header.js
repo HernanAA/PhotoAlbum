@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Actions } from 'react-native-router-flux';
 
 const Header = (props) => {
-  //alert(props.filtering);
   return (
     <View style={styles.container}>
       {!props.filtering ?
@@ -28,7 +27,8 @@ const Header = (props) => {
           onChangeText={props.onFilterChanged}
           underlineColorAndroid={'transparent'}
           textAlign={'center'}
-          value={props.albumFilterText}>
+          value={props.albumFilterText}
+          editable={props.filtering}>
         </TextInput>
         <TouchableOpacity
           style={styles.searchIconContainer}
@@ -54,7 +54,7 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    paddingLeft: 20,
+    paddingLeft: 40,
     flex: 1,
   },
   navBarLeftButton: {
@@ -69,7 +69,7 @@ const styles = {
   filterContainer: (filtering) => {
     var style = {
       flex: 1.3,
-      backgroundColor: 'rgba(47,163,218,.1)',
+      backgroundColor: 'transparent',
       justifyContent: 'space-between',
       alignItems: 'center',
       height: 45,

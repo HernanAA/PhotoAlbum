@@ -4,7 +4,7 @@ import {
   ALBUMS_FETCH,
   ALBUMS_FETCH_SUCCESS,
   ALBUMS_FETCH_FAIL,
-  // ALBUMS_FILTER_CHANGED,
+  ALBUMS_FILTER_CHANGED,
   ALBUM_SELECT,
   // ALBUM_FILTERING
 } from '../actions/types';
@@ -24,7 +24,7 @@ export default (state = INITIAL_STATE, action) => {
       var incoming = action.payload.albums
       console.log('REHYDRATE', incoming)
       if (incoming) {
-        return { ...state, ...incoming, rehydrated: true }
+        return { ...state, ...incoming, filteredList: incoming.list, rehydrated: true }
       }
       return { ...state, rehydrated: true }
     case ALBUMS_FETCH:
@@ -35,10 +35,9 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, ...action.payload, fetching: false };
     case ALBUM_SELECT:
       return { ...state, ...action.payload };
-    // case ALBUMS_FILTER_CHANGED:
-    //   return { ...state, ...action.payload, fetching: false };
-    // case ALBUM_FILTERING:
-    //   return {...state, filtering: !state.filtering}
+    case ALBUMS_FILTER_CHANGED:
+     // return { ...state, ...action.payload, fetching: false };
+         return { ...state, filteredList: action.payload.filteredList, fetching: false };
     default:
       return state;
   }

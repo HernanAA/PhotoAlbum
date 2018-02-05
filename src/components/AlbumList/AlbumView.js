@@ -20,7 +20,8 @@ class AlbumView extends Component {
         const image = imageIndex >= 0 ? this.props.photosList[imageIndex].url : null;
 
         return (
-            <TouchableOpacity onPress={this.onAlbumPress.bind(this, item)}>
+            <TouchableOpacity onPress={this.onAlbumPress.bind(this, item)}
+                style={{}}>
                 <AlbumViewItem item={item} image={image} />
             </TouchableOpacity>
         )
@@ -34,7 +35,7 @@ class AlbumView extends Component {
     }
 
     render() {
-        const title = <Header headerText={"Albums"} 
+        const title = <Header headerText={"Your Albums"} 
             onFilterChanged={this.onFilterChanged.bind(this)}
             onFilterPressed={this.onFilterPressed.bind(this)}
             filtering={this.props.filtering}
@@ -88,8 +89,6 @@ const styles = {
     },
     container: {
         flex: 1,
-        paddingHorizontal: 10,
-        //backgroundColor: 'rgba(47,163,218,.2)'
     },
     listContainer: {
         flex: 1,

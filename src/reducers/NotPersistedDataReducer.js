@@ -11,7 +11,7 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case ALBUMS_FILTER_CHANGED:
-      return { ...state, ...action.payload};
+      return { ...state, albumFilterText: action.payload.albumFilterText};
     case ALBUM_FILTERING:
       return {...state, filtering: !state.filtering}
     default:
