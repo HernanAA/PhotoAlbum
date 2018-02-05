@@ -26,7 +26,7 @@ const styles = {
         width: Utils.getWindowDimensions().width / 2 - 40,
         marginVertical: 10,
         flexDirection: 'column',
-        backgroundColor: 'rgba(50,150,255,.4)',
+        backgroundColor: 'rgba(255, 255, 230,.5)',
         marginHorizontal: 20,
         borderBottomLeftRadius:5,
         borderBottomRightRadius:5,

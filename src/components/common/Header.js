@@ -43,7 +43,7 @@ const Header = (props) => {
 
 const styles = {
   container: {
-    backgroundColor: 'rgba(47,163,218,.4)',
+    backgroundColor: 'rgba(255,255,255,.3)',
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 45,
@@ -78,7 +78,7 @@ const styles = {
       borderRadius: 4,
     }
     if (filtering) {
-      style.backgroundColor = 'rgba(47,163,218,.4)'
+      style.backgroundColor = 'rgba(255,255,255,.3)'
     }
     return style;
   },

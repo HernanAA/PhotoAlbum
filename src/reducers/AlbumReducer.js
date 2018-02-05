@@ -36,8 +36,7 @@ export default (state = INITIAL_STATE, action) => {
     case ALBUM_SELECT:
       return { ...state, ...action.payload };
     case ALBUMS_FILTER_CHANGED:
-     // return { ...state, ...action.payload, fetching: false };
-         return { ...state, filteredList: action.payload.filteredList, fetching: false };
+      return { ...state, filteredList: action.payload.filteredList, fetching: false };
     default:
       return state;
   }
