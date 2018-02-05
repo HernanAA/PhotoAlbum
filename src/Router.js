@@ -5,7 +5,7 @@ import {
     Stack,
 } from 'react-native-router-flux';
 import Albums from './components/AlbumList';
-//import PhotosList from './components/PhotoList';
+import PhotoList from './components/PhotoList';
 //import Photo from './components/Photo';
 
 const RouterComponent = () => {
@@ -26,7 +26,12 @@ const RouterComponent = () => {
                         hideNavBar
                     />
 
-                    
+                    <Scene
+                        key="photoList"
+                        component={PhotoList}
+                        hideNavBar
+                    />
+
                 </Stack>
             </Stack>
         </Router>

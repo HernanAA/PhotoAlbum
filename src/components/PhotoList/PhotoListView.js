@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { View, TouchableWithoutFeedback, FlatList, Text, ImageBackground, Animated } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import Styles from '../../styles'
-import { AlbumViewItem } from './AlbumViewItem'
+import { PhotoListViewItem } from './PhotoListViewItem'
 import { Spinner, Header } from '../common';
 
-class AlbumView extends Component {
+class PhotoListView extends Component {
 
     constructor(props) {
         super(props)
@@ -13,8 +13,8 @@ class AlbumView extends Component {
     }
 
     onAlbumPress(item) {
-        this.props.albumSelect(item);
-        Actions.photoList();
+        // this.props.photoFetch(item._id);
+        // Actions.photos();
     }
 
     onAlbumPressIn() {
@@ -30,13 +30,8 @@ class AlbumView extends Component {
         }).start()
     }
 
-
-
     renderItem({ item }) {
-        const imageIndex = this.props.photosList.findIndex(
-            (element, index, array) => element.albumId == item.id);
-
-        const image = imageIndex >= 0 ? this.props.photosList[imageIndex].url : null;
+        return (<PhotoListViewItem item={item} image={item.thumbnailUrl} />)
 
         return (
             <TouchableWithoutFeedback
@@ -44,8 +39,8 @@ class AlbumView extends Component {
                 onPressIn={this.onAlbumPressIn.bind(this)}
                 onPressOut={this.onAlbumPressOut.bind(this)}
                 style={{}}>
-                <Animated.View style={{transform: [{scale: this.state.animatePress}]}}>
-                    <AlbumViewItem item={item} image={image} />
+                <Animated.View style={{ transform: [{ scale: this.state.animatePress }] }}>
+                    <PhotoListViewItem item={item} image={item.thumbnailUrl} />
                 </Animated.View>
             </TouchableWithoutFeedback>
         )
@@ -59,32 +54,11 @@ class AlbumView extends Component {
     }
 
     render() {
-        const title = <Header headerText={"Your Albums"}
-            onFilterChanged={this.onFilterChanged.bind(this)}
-            onFilterPressed={this.onFilterPressed.bind(this)}
-            filtering={this.props.filtering}
-            backButton={false}
-            albumFilterText={this.props.albumFilterText} />;
-
-        if (this.props.fetching) {
-            return (
-                <ImageBackground source={require('./../../images/background.jpg')} style={styles.screen}>
-                    {title}
-                    <Spinner size="small" />
-                </ImageBackground>
-            )
-        }
-
-        if (this.props.error !== '') {
-            return (
-                <ImageBackground source={require('./../../images/background.jpg')} style={styles.screen}>
-                    {title}
-                    <View style={styles.errorContainer}>
-                        <Text> {this.props.error} </Text>
-                    </View>
-                </ImageBackground>
-            )
-        }
+        const title = <Header
+            headerText={this.props.selectedAlbum.title.substring(0, 16) + '...'}
+            backButton={true}
+            searchButton={false}
+        />;
 
         return (
             <ImageBackground source={require('./../../images/background.jpg')} style={styles.screen}>
@@ -93,8 +67,8 @@ class AlbumView extends Component {
                     <View style={styles.listContainer}>
                         <FlatList
                             style={{ flex: 1, flexDirection: 'column' }}
-                            numColumns={2}
-                            data={this.props.filteredList}
+                            numColumns={4}
+                            data={this.props.albumPhotos}
                             keyExtractor={(item, index) => item.id}
                             renderItem={this.renderItem.bind(this)}
                         />
@@ -105,7 +79,7 @@ class AlbumView extends Component {
     }
 }
 
-export default AlbumView;
+export default PhotoListView;
 
 const styles = {
     screen: {

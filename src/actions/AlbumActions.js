@@ -7,7 +7,8 @@ import {
     ALBUMS_FETCH_FAIL,
     ALBUMS_FILTER_CHANGED,
     ALBUM_SELECT,
-    ALBUM_FILTERING
+    ALBUM_FILTERING,
+    ALBUM_PHOTOS_CHANGED
 } from './types';
 
 export const albumsFetch = () => {
@@ -45,7 +46,7 @@ export const albumFilterPressed = () => {
                 payload: { albumFilterText: '', filteredList: getState().albums.list }
             })
         }
-        dispatch({type: ALBUM_FILTERING})
+        dispatch({ type: ALBUM_FILTERING })
     }
 }
 
@@ -67,8 +68,25 @@ export const albumFilterChanged = ({ text }) => {
 }
 
 export const albumSelect = (selectedAlbum) => {
-    return ({
-        type: ALBUM_SELECT,
-        payload: { selectedAlbum }
-    });
+    return (dispatch, getState) => {
+        if (getState().albums.selectedAlbum.id != selectedAlbum.id) {
+
+            const newData = getState().photo.list.filter((item) => 
+                item.albumId == selectedAlbum.id
+            )
+
+            dispatch({
+                type: ALBUM_SELECT,
+                payload: { selectedAlbum }
+            });
+
+            dispatch({
+                type: ALBUM_PHOTOS_CHANGED,
+                payload: { albumPhotos: newData }
+            });
+
+        }
+
+
+    }
 }

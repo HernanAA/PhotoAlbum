@@ -9,12 +9,13 @@ import {
   PHOTO_FETCH_SUCCESS,
   PHOTO_FETCH_FAIL,
   PHOTO_SELECT,
+  ALBUM_PHOTOS_CHANGED
 
 } from '../actions/types';
 
 const INITIAL_STATE = {
   list: [],
-  filteredList: [],
+  albumPhotos: [],
   error: '',
   fetching: false,
   selectedPhoto: {},
@@ -33,19 +34,15 @@ export default (state = INITIAL_STATE, action) => {
     case PHOTO_LIST_FETCH:
       return { ...state, fetching: true };
     case PHOTO_LIST_FETCH_SUCCESS:
-      return { ...state, list: action.payload, filteredList: action.payload, fetching: false };
+      return { ...state, list: action.payload, fetching: false };
     case PHOTO_LIST_FETCH_FAIL:
-      return { ...state, ...action.payload, fetching: false };
-    case PHOTO_FETCH:
-      return { ...state, fetching: true };
-    case PHOTO_FETCH_SUCCESS:
-      return { ...state, list: action.payload, filteredList: action.payload, fetching: false };
-    case PHOTO_FETCH_FAIL:
       return { ...state, ...action.payload, fetching: false };
     case PHOTO_SELECT:
       return { ...state, ...action.payload };
     case PHOTOS_FILTER_CHANGED:
       return { ...state, ...action.payload, fetching: false };
+    case ALBUM_PHOTOS_CHANGED:
+      return { ...state, ...action.payload };
     default:
       return state;
   }
