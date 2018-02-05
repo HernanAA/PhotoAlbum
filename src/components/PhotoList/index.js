@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { View, NetInfo } from 'react-native'
 import { connect } from 'react-redux';
-//import { albumSelect, albumFilterPressed } from '../../actions/AlbumActions';
-//import { photoListFetch } from '../../actions/PhotoActions';
 import PhotoListView from './PhotoListView'
 
 class PhotoList extends Component {
@@ -23,15 +21,9 @@ const styles = {
 
 const mapStateToProps = ({ photo, albums }) => {
     const {selectedAlbum} = albums;
-    const {albumPhotos, list} = photo;
-    return { albumPhotos, selectedAlbum, list }
+    const {albumPhotos} = photo;
+    return { albumPhotos, selectedAlbum }
 };
 
-export default connect(mapStateToProps, {
-    // albumsFetch,
-    // albumFilterChanged,
-    // albumSelect,
-    // albumFilterPressed,
-    // photoListFetch
-})(PhotoList);
+export default connect(mapStateToProps, {})(PhotoList);
 

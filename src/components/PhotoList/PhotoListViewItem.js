@@ -1,17 +1,51 @@
 import React, { Component } from 'react'
 import Styles from '../../styles'
-import { View, Image, Text } from 'react-native'
+import { View, Image, Text, Animated } from 'react-native'
 import Utils from '../../helpers/utils';
 import { Stars } from '../common';
 
-const PhotoListViewItem = ({ item, image }) => {
-    return (
-        <View key={item.id} style={styles.container}>
-            <View style={styles.imageContainer}>
-                <Image source={{ uri: image }} style={styles.image} />
-            </View >
-        </View >
-    )
+class PhotoListViewItem extends Component {
+    constructor(props) {
+        super(props)
+        this.state = ({
+            animateItem: new Animated.Value(0)
+        })
+    }
+
+    componentWillMount() {
+        Animated.timing(this.state.animateItem, {
+            toValue: 1,
+            duration: 900,
+            delay:this.props.index*50
+        }).start()
+    }
+
+    render() {
+        return (
+            <Animated.View style={{
+                transform: [
+                    {
+                        translateY: this.state.animateItem.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [900, 1]
+                        })
+                    }
+                    , {
+                        translateX: this.state.animateItem.interpolate({
+                            inputRange: [0, 1],
+                            outputRange: [400, 1]
+                        })
+                    }
+                ]
+            }}>
+                <View key={this.props.item.id} style={styles.container}>
+                    <View style={styles.imageContainer}>
+                        <Image source={{ uri: this.props.image }} style={styles.image} />
+                    </View >
+                </View >
+            </Animated.View>
+        )
+    }
 }
 
 const styles = {
@@ -22,7 +56,7 @@ const styles = {
         flexDirection: 'column',
         backgroundColor: 'rgba(255, 255, 230,.5)',
         marginHorizontal: 5,
-        borderRadius:5,
+        borderRadius: 5,
     },
     imageContainer: {
         flex: 1,
@@ -39,7 +73,7 @@ const styles = {
         justifyContent: 'center',
         paddingHorizontal: 10,
         paddingVertical: 5,
-        height:54,
+        height: 54,
     },
     line: {
         flexDirection: 'row',
@@ -57,4 +91,4 @@ const styles = {
     },
 }
 
-export { PhotoListViewItem }
+export default PhotoListViewItem;

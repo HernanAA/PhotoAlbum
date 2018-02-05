@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, TouchableWithoutFeedback, FlatList, Text, ImageBackground, Animated } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import Styles from '../../styles'
-import { PhotoListViewItem } from './PhotoListViewItem'
+import  PhotoListViewItem  from './PhotoListViewItem'
 import { Spinner, Header } from '../common';
 
 class PhotoListView extends Component {
@@ -10,15 +10,7 @@ class PhotoListView extends Component {
     constructor(props) {
         super(props)
         this.state = ({ 
-            animatePress: new Animated.Value(1),
-            animateItem: new Animated.Value(0) })
-    }
-
-    componentWillMount() {
-        Animated.timing(this.state.animateItem, {
-            toValue: 1,
-            duration: 400
-        }).start()
+            animatePress: new Animated.Value(1) })
     }
 
     onPhotoPressIn() {
@@ -34,7 +26,7 @@ class PhotoListView extends Component {
         }).start()
     }
 
-    renderItem({ item }) {
+    renderItem({ item, index }) {
         return (
             <TouchableWithoutFeedback
                 onPressIn={this.onPhotoPressIn.bind(this)}
@@ -44,20 +36,10 @@ class PhotoListView extends Component {
                     transform: [
                         {
                             scale: this.state.animatePress
-                        },{
-                            translateY: this.state.animateItem.interpolate({
-                                inputRange:[0,1],
-                                outputRange:[700,1]
-                            })
-                        },{
-                            translateX: this.state.animateItem.interpolate({
-                                inputRange:[0,1],
-                                outputRange:[400,1]
-                            })
                         }
                     ]
                 }}>
-                    <PhotoListViewItem item={item} image={item.thumbnailUrl} />
+                    <PhotoListViewItem item={item} image={item.thumbnailUrl} index={index} />
                 </Animated.View>
             </TouchableWithoutFeedback>
         )
@@ -85,7 +67,7 @@ class PhotoListView extends Component {
                         <FlatList
                             style={{ flex: 1, flexDirection: 'column' }}
                             numColumns={2}
-                            data={this.props.list}
+                            data={this.props.albumPhotos}
                             keyExtractor={(item, index) => item.id}
                             renderItem={this.renderItem.bind(this)}
                         />

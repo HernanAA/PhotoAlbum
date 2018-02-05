@@ -33,7 +33,18 @@ const mapStateToProps = ({ albums, photo, notPersisted }) => {
     const { filteredList, fetching, rehydrated, error, } = albums;
     const { filtering, albumFilterText } = notPersisted;
     const photosList = photo.list;
-    return { filteredList, fetching, rehydrated, error, filtering, photosList, albumFilterText }
+    const photosError = photo.error;
+   
+    return {
+        filteredList,
+        fetching,
+        rehydrated,
+        error,
+        filtering,
+        photosList,
+        albumFilterText,
+        photosError
+    }
 };
 
 export default connect(mapStateToProps, {

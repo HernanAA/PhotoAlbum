@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, TouchableWithoutFeedback, FlatList, Text, ImageBackground, Animated } from 'react-native'
+import { View, TouchableOpacity, FlatList, Text, ImageBackground, Animated } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import Styles from '../../styles'
 import { AlbumViewItem } from './AlbumViewItem'
@@ -9,7 +9,7 @@ class AlbumView extends Component {
 
     constructor(props) {
         super(props)
-        this.state = ({ animatePress: new Animated.Value(1) })
+        this.state = ({ animateItem: new Animated.Value(0) })
     }
 
     onAlbumPress(item) {
@@ -17,20 +17,12 @@ class AlbumView extends Component {
         Actions.photoList();
     }
 
-    onAlbumPressIn() {
-        Animated.timing(this.state.animatePress, {
-            toValue: 0.8,
-            duration: 200
-        }).start()
-    }
-    onAlbumPressOut() {
-        Animated.timing(this.state.animatePress, {
+    componentWillMount() {
+        Animated.timing(this.state.animateItem, {
             toValue: 1,
-            duration: 200
+            duration: 900
         }).start()
     }
-
-
 
     renderItem({ item }) {
         const imageIndex = this.props.photosList.findIndex(
@@ -39,20 +31,22 @@ class AlbumView extends Component {
         const image = imageIndex >= 0 ? this.props.photosList[imageIndex].url : null;
 
         return (
-            <TouchableWithoutFeedback
-                onPress={this.onAlbumPress.bind(this, item)}
-                onPressIn={this.onAlbumPressIn.bind(this)}
-                onPressOut={this.onAlbumPressOut.bind(this)}>
+            <TouchableOpacity
+                onPress={this.onAlbumPress.bind(this, item)}>
+
                 <Animated.View style={{
                     transform: [
                         {
-                            scale: this.state.animatePress
-                        }
+                            translateY: this.state.animateItem.interpolate({
+                                inputRange: [0, 1],
+                                outputRange: [700, 1]
+                            })
+                        } 
                     ]
                 }}>
                     <AlbumViewItem item={item} image={image} />
                 </Animated.View>
-            </TouchableWithoutFeedback>
+            </TouchableOpacity>
         )
     }
 
@@ -81,12 +75,13 @@ class AlbumView extends Component {
             )
         }
 
-        if (this.props.error !== '') {
+        if (this.props.error != '' || this.props.photosError != '') {
             return (
                 <ImageBackground source={require('./../../images/background.jpg')} style={styles.screen}>
                     {title}
                     <View style={styles.errorContainer}>
                         <Text> {this.props.error} </Text>
+                        <Text> {this.props.photosError} </Text>
                     </View>
                 </ImageBackground>
             )
