@@ -23,8 +23,8 @@ const styles = {
 
 const mapStateToProps = ({ photo, albums }) => {
     const {selectedAlbum} = albums;
-    const {albumPhotos} = photo;
-    return { albumPhotos, selectedAlbum }
+    const {albumPhotos, list} = photo;
+    return { albumPhotos, selectedAlbum, list }
 };
 
 export default connect(mapStateToProps, {

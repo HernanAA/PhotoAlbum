@@ -42,9 +42,14 @@ class AlbumView extends Component {
             <TouchableWithoutFeedback
                 onPress={this.onAlbumPress.bind(this, item)}
                 onPressIn={this.onAlbumPressIn.bind(this)}
-                onPressOut={this.onAlbumPressOut.bind(this)}
-                style={{}}>
-                <Animated.View style={{transform: [{scale: this.state.animatePress}]}}>
+                onPressOut={this.onAlbumPressOut.bind(this)}>
+                <Animated.View style={{
+                    transform: [
+                        {
+                            scale: this.state.animatePress
+                        }
+                    ]
+                }}>
                     <AlbumViewItem item={item} image={image} />
                 </Animated.View>
             </TouchableWithoutFeedback>
@@ -64,6 +69,7 @@ class AlbumView extends Component {
             onFilterPressed={this.onFilterPressed.bind(this)}
             filtering={this.props.filtering}
             backButton={false}
+            searchButton={true}
             albumFilterText={this.props.albumFilterText} />;
 
         if (this.props.fetching) {

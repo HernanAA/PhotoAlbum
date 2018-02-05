@@ -69,23 +69,23 @@ export const albumFilterChanged = ({ text }) => {
 
 export const albumSelect = (selectedAlbum) => {
     return (dispatch, getState) => {
-        if (getState().albums.selectedAlbum.id != selectedAlbum.id) {
+        //if (getState().albums.selectedAlbum.id != selectedAlbum.id) {
 
-            const newData = getState().photo.list.filter((item) => 
-                item.albumId == selectedAlbum.id
-            )
+            // const newData = getState().photo.list.filter((item) => 
+            //     item.albumId == selectedAlbum.id
+            // )
 
             dispatch({
                 type: ALBUM_SELECT,
                 payload: { selectedAlbum }
             });
 
-            dispatch({
-                type: ALBUM_PHOTOS_CHANGED,
-                payload: { albumPhotos: newData }
-            });
+            // dispatch({
+            //     type: ALBUM_PHOTOS_CHANGED,
+            //     payload: { albumPhotos: newData }
+            // });
 
-        }
+        //}
 
 
     }

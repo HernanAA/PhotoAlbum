@@ -16,8 +16,8 @@ const PhotoListViewItem = ({ item, image }) => {
 
 const styles = {
     container: {
-        height: 100,
-        width: Utils.getWindowDimensions().width / 4 - 10,
+        height: 150,
+        width: Utils.getWindowDimensions().width / 2 - 10,
         marginVertical: 3,
         flexDirection: 'column',
         backgroundColor: 'rgba(255, 255, 230,.5)',
@@ -26,8 +26,7 @@ const styles = {
     },
     imageContainer: {
         flex: 1,
-        borderTopLeftRadius: 5,
-        borderTopRightRadius: 5,
+        borderRadius: 5,
         borderColor: Styles.colors.lighterGray,
         overflow: 'hidden',
     },
