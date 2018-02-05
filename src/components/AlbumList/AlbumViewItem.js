@@ -22,14 +22,13 @@ const AlbumViewItem = ({ item, image }) => {
 
 const styles = {
     container: {
-        height: 240,
-        width: Utils.getWindowDimensions().width / 2 - 40,
-        marginVertical: 10,
+        height: 180,
+        width: Utils.getWindowDimensions().width / 2 - 80,
+        marginVertical: 30,
         flexDirection: 'column',
         backgroundColor: 'rgba(255, 255, 230,.5)',
-        marginHorizontal: 20,
-        borderBottomLeftRadius:5,
-        borderBottomRightRadius:5,
+        marginHorizontal: 40,
+        borderRadius:5,
     },
     imageContainer: {
         flex: 1,

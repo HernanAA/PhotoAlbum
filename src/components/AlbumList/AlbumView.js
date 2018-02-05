@@ -1,17 +1,36 @@
 import React, { Component } from 'react'
-import { View, TouchableOpacity, FlatList, Text, ImageBackground } from 'react-native'
+import { View, TouchableWithoutFeedback, FlatList, Text, ImageBackground, Animated } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import Styles from '../../styles'
 import { AlbumViewItem } from './AlbumViewItem'
-import { AlbumFilter } from './AlbumFilter'
 import { Spinner, Header } from '../common';
 
 class AlbumView extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = ({ animatePress: new Animated.Value(1) })
+    }
 
     onAlbumPress(item) {
         // this.props.photoFetch(item._id);
         // Actions.photos();
     }
+
+    onAlbumPressIn() {
+        Animated.timing(this.state.animatePress, {
+            toValue: 0.8,
+            duration: 200
+        }).start()
+    }
+    onAlbumPressOut() {
+        Animated.timing(this.state.animatePress, {
+            toValue: 1,
+            duration: 200
+        }).start()
+    }
+
+
 
     renderItem({ item }) {
         const imageIndex = this.props.photosList.findIndex(
@@ -20,27 +39,32 @@ class AlbumView extends Component {
         const image = imageIndex >= 0 ? this.props.photosList[imageIndex].url : null;
 
         return (
-            <TouchableOpacity onPress={this.onAlbumPress.bind(this, item)}
+            <TouchableWithoutFeedback
+                onPress={this.onAlbumPress.bind(this, item)}
+                onPressIn={this.onAlbumPressIn.bind(this)}
+                onPressOut={this.onAlbumPressOut.bind(this)}
                 style={{}}>
-                <AlbumViewItem item={item} image={image} />
-            </TouchableOpacity>
+                <Animated.View style={{transform: [{scale: this.state.animatePress}]}}>
+                    <AlbumViewItem item={item} image={image} />
+                </Animated.View>
+            </TouchableWithoutFeedback>
         )
     }
 
     onFilterChanged(text) {
         this.props.albumFilterChanged({ text });
     }
-    onFilterPressed(){
+    onFilterPressed() {
         this.props.albumFilterPressed();
     }
 
     render() {
-        const title = <Header headerText={"Your Albums"} 
+        const title = <Header headerText={"Your Albums"}
             onFilterChanged={this.onFilterChanged.bind(this)}
             onFilterPressed={this.onFilterPressed.bind(this)}
             filtering={this.props.filtering}
             backButton={false}
-            albumFilterText={this.props.albumFilterText}/>;
+            albumFilterText={this.props.albumFilterText} />;
 
         if (this.props.fetching) {
             return (
