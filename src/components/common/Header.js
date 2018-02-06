@@ -64,7 +64,7 @@ const styles = {
     paddingTop:5,
   },
   headerText: {
-    fontSize: 27,
+    fontSize: 25,
     fontWeight: '400',
     textShadowOffset: { width: 0, height: 1 },
     color: Styles.colors.darkerGray,
