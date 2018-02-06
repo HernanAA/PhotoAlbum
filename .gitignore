@@ -59,8 +59,7 @@ package-lock.json
 .flowconfig
 .gitattributes
 .watchmanconfig
-ios/Pods/
 node_modules/react-native-maps/package.json
 
-ios/
+
 
