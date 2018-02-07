@@ -28,3 +28,5 @@ or
 
 For more information, you can visit  https://github.com/oblador/react-native-vector-icons/issues/626#issuecomment-357405396
 
+
+![](https://user-images.githubusercontent.com/7015591/35898945-5b494ed8-0ba8-11e8-94d4-6e9b9369eeb3.gif)
