@@ -24,7 +24,7 @@ or
 
 **Windows**: del node_modules\react-native\local-cli\core\__fixtures__\files\package.json
 
-**Mac**: rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
+**Mac**:  rm ./node_modules/react-native/local-cli/core/__fixtures__/files/package.json
 
 For more information, you can visit  https://github.com/oblador/react-native-vector-icons/issues/626#issuecomment-357405396
 
